@@ -28,7 +28,7 @@ class uSonicDistance:
         GPIO.output(self.PIN_TRIGGER, GPIO.HIGH)
         time.sleep(0.00001)
         GPIO.output(self.PIN_TRIGGER, GPIO.LOW)
-        
+
         pulse_start_time = 0
         pulse_end_time = 0
 
@@ -61,6 +61,7 @@ class uSonicDistance:
         measurement = self.measure("json")
         print("measurement = ")
         print(measurement)
+        print(measurement["data"])
 
         message = {}
         message["S"] = measurement["data"]
