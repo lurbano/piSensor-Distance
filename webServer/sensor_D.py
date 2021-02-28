@@ -6,7 +6,7 @@ import json
 
 class uSonicDistance:
 
-    def __init__(self, pin_trigger = 19, pin_echo = 16):
+    def __init__(self, pin_trigger = 23, pin_echo = 24):
         GPIO.setmode(GPIO.BCM)
         self.PIN_TRIGGER = pin_trigger
         self.PIN_ECHO = pin_echo
