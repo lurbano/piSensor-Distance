@@ -54,6 +54,26 @@ class uSonicDistance:
         else:
             return distance
 
+    async def aRead(self, server, getTime=False, log=False, update="live"):
+        measurement = self.measure("json")
+        
+        message = {"S": measurement["data"] }
+        message["units"] = measurement["units"]
+
+        if getTime:
+            message["t"] = time.ctime(time.time())
+        if log:
+            m = {"x": T_C, "t":round(time.time()-self.startTime, 4)}
+            self.log.append(m)
+            if update == "live":
+                m['timeLeft'] = self.timeLeft
+                m["info"] = "logUp"
+                server.write_message(m)
+        message["info"] = "S-one"
+        server.write_message(message)
+        return message
+
+
     def multipulse(self, nPulses=10):
         data = []
         for i in range(nPulses):

@@ -31,6 +31,36 @@ Connection: <span id="ws-status"> Waiting... </span>
   <input type="number" id="timerSec" min="0" value="0" title="seconds">
   <span id="timeLeft"></span>
 
+  <!-- DISTANCE SENSOR -->
+  <p>
+  <input type="button" id="checkSensor" value="Check Distance">
+  <div id="Ddata">
+    <span id="sensor_measure"></span><br>
+    <span id="sensor_time"></span>
+  </div>
+  <p>
+
+  <div class="sensorBlock">
+    <input type="button" id="logD" value="Start Logging">
+    <div> Log Time:
+      <input type="number" id="logD_timeMin" min="0" value="0" title="minutes">
+      <input type="number" id="logD_timeSec" min="0" value="0" title="seconds">
+    </div>
+    <div> Log timestep (dt):
+      <input type="number" id="logD_dtMin" min="0" value="0" title="minutes">
+      <input type="number" id="logD_dtSec" min="0" value="0" title="seconds">
+    </div>
+    <div id="countdownD">
+      <div id="timeLeftD" class="timerBar"></div>
+      <div id="countdownDataD"></div>
+    </div>
+    <p>
+    <div id="logGraph"></div>
+    <p>
+    <div id="logData"></div>
+  </div>
+  <!-- DISTANCE SENSOR (END) -->
+
 <br>
 <input type="button" id="reboot" value="Reboot Pi">
 

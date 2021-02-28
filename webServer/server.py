@@ -23,6 +23,11 @@ import numpy as np
 #from oledU import *
 from basic import *
 
+# DISTANCE SENSOR (1/2)
+from distance_sensor import *
+# DISTANCE SENSOR (END)
+
+
 nPix = 20
 
 # get number of pixels from the command line
@@ -67,6 +72,22 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 			if msg["what"] == "server":
 				if msg["opts"] == "off":
 					sys.exit("Stopping server")
+
+			# DISTANCE SENSOR (2/2)
+
+			if msg["what"] == "checkS":
+				sensor = uSonicDistance()
+				task = asyncio.create_task(sensor.aRead(self))
+
+			# if msg["what"] == "logT":
+			# 	Tsense = sensor_T()
+			# 	t = float(msg["t"])
+			# 	dt = float(msg["dt"])
+			# 	update = msg["update"]
+			# 	task = asyncio.create_task(Tsense.aLog(self, t, dt, update))
+
+			# DISTANCE SENSOR (END)
+
 
 			if msg["what"] == "hello":
 				r = 'Say what?'

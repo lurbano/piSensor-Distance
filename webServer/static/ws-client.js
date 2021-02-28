@@ -39,6 +39,31 @@ $(document).ready(function(){
                 $("#timeLeft").html(m + ":" + s);
               }
 
+              // DISTANCE SENSOR (1/2)
+
+              // measure once (button press)
+              if (sData.info == 'S-one'){
+                $("#sensor_measure").html(sData.S + ' ' + sData.units);
+                let now = new Date();
+                $("#sensor_time").html(now.toString().split(" GMT")[0]);
+              }
+
+              // write all data to log at end of sensing
+              // if (sData.info == 'logT'){
+              //   dataT.writeAllData(sData);
+              // }
+              //
+              // // continuous log: Add one data point to graph and table
+              // if (sData.info == 'logUp'){
+              //   dataT.addRow(sData);
+              //   graphT.addDataPoint(sData);
+              //
+              //   $("#countdownData").html("-"+sData.timeLeft+" s");
+              //   $("#timeLeftT").css("width", 100*sData.timeLeft/timeLog+"%");
+              // }
+              //DISTANCE SENSOR (END)
+
+
             };
         };
 
@@ -49,6 +74,43 @@ $(document).ready(function(){
         };
 
         //MESSAGES TO SEND TO THE SERVER
+
+        // DISTANCE SENSOR (2/2)
+
+        $("#checkSensor").click(function(){
+            let msg = '{"what": "checkS"}';
+            ws.send(msg);
+            let return_signal = "Checking " + this.value.split(" ")[0];
+            $("#sensor_measure").html(return_signal);
+        });
+
+        // $("#logT").click(function(){
+        //     dataT = new dataTable("logData", "°C");
+        //     dataT.setupTable();
+        //
+        //     graphT = new dataGraph("logGraph", "°C");
+        //     $("#logGraph").css("height", "400px");
+        //     console.log(graphT.plot.data);
+        //
+        //     let timeMin = parseInt($("#logT_timeMin").val());
+        //     let timeSec = parseInt($("#logT_timeSec").val());
+        //     timeLog = timeMin * 60 + timeSec;
+        //
+        //     let dtMin = parseInt($("#logT_dtMin").val());
+        //     let dtSec = parseInt($("#logT_dtSec").val());
+        //     let dt = dtMin * 60 + dtSec;
+        //
+        //     let msg = {
+        //       "what": "logT",
+        //       "t": timeLog,
+        //       "dt": dt,
+        //       "update": "live"
+        //     }
+        //     ws.send(JSON.stringify(msg));
+        // });
+
+        // DISTANCE SENSOR (END)
+
 
         $("#hello").click(function(){
             let msg = '{"what": "hello"}';
