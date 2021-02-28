@@ -56,9 +56,11 @@ class uSonicDistance:
 
     async def aRead(self, server, getTime=False, log=False, update="live"):
         measurement = self.measure("json")
+        print("measurement = ")
+        print(measurement)
 
         message = {}
-        message["S"] = measurement["data"] 
+        message["S"] = measurement["data"]
         message["units"] = measurement["units"]
 
         if getTime:
