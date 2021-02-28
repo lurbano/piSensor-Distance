@@ -24,7 +24,7 @@ import numpy as np
 from basic import *
 
 # DISTANCE SENSOR (1/2)
-from distance_sensor import *
+from sensor_D import *
 # DISTANCE SENSOR (END)
 
 
