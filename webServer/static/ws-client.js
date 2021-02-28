@@ -80,7 +80,7 @@ $(document).ready(function(){
         $("#checkSensor").click(function(){
             let msg = '{"what": "checkS"}';
             ws.send(msg);
-            let return_signal = "Checking " + this.value.split(" ")[0];
+            let return_signal = "Checking " + this.value.split(" ")[1];
             $("#sensor_measure").html(return_signal);
         });
 
