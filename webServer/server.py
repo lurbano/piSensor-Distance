@@ -28,19 +28,6 @@ from sensor_D import *
 # DISTANCE SENSOR (END)
 
 
-nPix = 20
-
-# get number of pixels from the command line
-parser = argparse.ArgumentParser()
-parser.add_argument("-n", "--nPix", help = "Number of pixels")
-args = parser.parse_args()
-
-if args.nPix:
-	try:
-		nPix = int(args.nPix)
-	except:
-		print("using default (20) pixels: -nPix 20")
-
 #Tornado Folder Paths
 settings = dict(
 	template_path = os.path.join(os.path.dirname(__file__), "templates"),
