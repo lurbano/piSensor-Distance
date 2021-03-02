@@ -30,7 +30,8 @@ sensor = None
 
 
 # LED STRIP (1/3)
-
+from ledPixels import *
+ledPin = board.D18
 ledPix = None
 
 # LED STRIP (END)
@@ -117,8 +118,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 				#Initialize neopixels
 				if not ledPix:
-					import ledPixels
-					ledPin = board.D18
 					ledPix = ledPixels(nPix, ledPin)
 
 				sensor.task = asyncio.create_task(sensor.aLedStrip(ledPix, dt, ledMaxRange, ledMinRange))
