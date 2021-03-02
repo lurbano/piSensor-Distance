@@ -69,6 +69,7 @@ class sensor_D:
             return distance
 
     async def aRead(self, getTime=False, log=False, update="live"):
+        print("measuring...")
         measurement = self.measure("json")
         # print("measurement = ")
         # print(measurement)
@@ -93,6 +94,7 @@ class sensor_D:
 
     async def aMonitor(self, dt):
         self.taskType = "monitor"
+        print("monitor: dt=", dt)
         while 1:
             await asyncio.gather(
                 asyncio.sleep(dt),
