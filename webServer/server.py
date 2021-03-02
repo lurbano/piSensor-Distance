@@ -103,7 +103,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 			global ledPix
 			if msg["what"] == 'ledStart':
 				print("Starting...")
-				print(msg)
 				#Initialize sensor
 				if not sensor:
 					sensor = sensor_U(self)
@@ -112,7 +111,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				nPix = int(msg['nPix'])
 				ledMaxRange = float(msg['ledMaxRange'])
 				ledMinRange = float(msg['ledMinRange'])
-				dt = float(msg['ledDT'])
+				dt = float(msg['ledDt'])
 
 				print("set up neopixels")
 
