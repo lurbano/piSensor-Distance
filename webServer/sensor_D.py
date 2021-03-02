@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 import json
 
-class uSonicDistance:
+class sensor_D:
 
     def __init__(self, pin_trigger = 23, pin_echo = 24):
         GPIO.setmode(GPIO.BCM)

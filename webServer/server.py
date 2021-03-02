@@ -24,7 +24,7 @@ import numpy as np
 from basic import *
 
 # DISTANCE SENSOR (1/2)
-from sensor_D import *
+from sensor_D import sensor_D as sensor_U
 # DISTANCE SENSOR (END)
 
 
@@ -63,8 +63,17 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 			# DISTANCE SENSOR (2/2)
 
 			if msg["what"] == "checkS":
-				sensor = uSonicDistance()
+				sensor = sensor_U()
 				asyncio.create_task(sensor.aRead(self))
+
+			if msg["what"] == 'monitor':
+				if not sensor:
+					sensor = sensor_U(self)
+				else:
+					sensor.cancelTask()
+				dt = float(msg['dt'])
+				sensor.task = asyncio.create_task(sensor.aMonitor(dt))
+
 
 			# if msg["what"] == "logT":
 			# 	Tsense = sensor_T()
