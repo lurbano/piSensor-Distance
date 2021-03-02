@@ -30,7 +30,7 @@ sensor = None
 
 
 # LED STRIP (1/3)
-global ledPix
+
 ledPix = None
 
 # LED STRIP (END)
@@ -100,7 +100,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			# LED STRIP (2/3) WITH SENSOR
 
-			#global ledPix
+			global ledPix
 			if msg["what"] == 'ledStart':
 				#Initialize sensor
 				if not sensor:
@@ -120,13 +120,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 				sensor.task = asyncio.create_task(sensor.aLedStrip(ledPix, dt, ledMaxRange, ledMinRange))
 
-			if msg["what"] == "nPix":
-				print("Resetting nPix")
-				global ledPix
-				ledPix.cancelTask()
-				n = int(msg["n"])
-				ledPix = ledPixels(n, ledPin)
-				ledPix.initCodeColor()
 
 			# END LED STRIP
 
