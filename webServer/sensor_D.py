@@ -70,7 +70,7 @@ class sensor_D:
             return distance
 
     async def aRead(self, getTime=False, log=False, update="live"):
-        print("measuring...")
+        # print("measuring...")
         measurement = self.measure("json")
         # print("measurement = ")
         # print(measurement)
