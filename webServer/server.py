@@ -37,7 +37,7 @@ settings = dict(
 #pyPath = '/home/pi/rpi-led-strip/pyLED/'
 
 #Tonado server port
-PORT = 8060
+PORT = 8070
 
 class MainHandler(tornado.web.RequestHandler):
 	def get(self):
@@ -64,7 +64,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			if msg["what"] == "checkS":
 				sensor = uSonicDistance()
-				task = asyncio.create_task(sensor.aRead(self))
+				asyncio.create_task(sensor.aRead(self))
 
 			# if msg["what"] == "logT":
 			# 	Tsense = sensor_T()
