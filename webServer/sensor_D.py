@@ -109,7 +109,7 @@ class sensor_D:
             dist = self.measure()
             n = int(ledPix.nPix * (dist - ledMinRange) / (ledMaxRange-ledMinRange))
             ledPix.twoColors(n)
-            await asyncio.sleep(dt)
+            await asyncio.sleep(dt, (50,0,0), (0,50,0))
 
 
 
