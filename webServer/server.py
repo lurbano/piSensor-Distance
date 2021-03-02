@@ -112,6 +112,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				ledMinRange = float(msg['ledMinRange'])
 				dt = float(msg['ledDT'])
 
+				print("set up neopixels")
+
 				#Initialize neopixels
 				if not ledPix:
 					import ledPixels
