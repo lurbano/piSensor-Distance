@@ -30,7 +30,7 @@ sensor = None
 
 
 # LED STRIP (1/3)
-
+global ledPix
 ledPix = None
 
 # LED STRIP (END)
@@ -100,7 +100,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			# LED STRIP (2/3) WITH SENSOR
 
-			global ledPix
+			#global ledPix
 			if msg["what"] == 'ledStart':
 				#Initialize sensor
 				if not sensor:
@@ -114,7 +114,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 				#Initialize neopixels
 				if not ledPix:
-					import ledPixels 
+					import ledPixels
 					ledPin = board.D18
 					ledPix = ledPixels(nPix, ledPin)
 
