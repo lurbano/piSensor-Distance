@@ -68,7 +68,7 @@ class sensor_D:
         else:
             return distance
 
-    async def aRead(self, server, getTime=False, log=False, update="live"):
+    async def aRead(self, getTime=False, log=False, update="live"):
         measurement = self.measure("json")
         # print("measurement = ")
         # print(measurement)
@@ -86,9 +86,9 @@ class sensor_D:
             if update == "live":
                 m['timeLeft'] = self.timeLeft
                 m["info"] = "logUp"
-                server.write_message(m)
+                self.server.write_message(m)
         message["info"] = "S-one"
-        server.write_message(message)
+        self.server.write_message(message)
         return message
 
     async def aMonitor(self, dt):
