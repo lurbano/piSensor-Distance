@@ -6,12 +6,23 @@ import json
 
 class sensor_D:
 
-    def __init__(self, pin_trigger = 23, pin_echo = 24):
+    def __init__(self, server, pin_trigger = 23, pin_echo = 24):
         GPIO.setmode(GPIO.BCM)
         self.PIN_TRIGGER = pin_trigger
         self.PIN_ECHO = pin_echo
         GPIO.setup(self.PIN_TRIGGER, GPIO.OUT)
         GPIO.setup(self.PIN_ECHO, GPIO.IN)
+
+        self.server = server
+        self.log = []
+        self.task = None
+        self.taskType = None
+
+    def cancelTask(self):
+        print("Canceling last task.")
+        if self.task:
+            self.task.cancel()
+            self.taskType = None
 
     async def async_measure(self, returnType='none'):
         d = self.measure(returnType)
@@ -79,6 +90,13 @@ class sensor_D:
         message["info"] = "S-one"
         server.write_message(message)
         return message
+
+    async def aMonitor(self, dt):
+        self.taskType = "monitor"
+        while 1:
+            await asyncio.gather(
+                asyncio.sleep(dt),
+                self.aRead( True, False, 'live')
 
 
     def multipulse(self, nPulses=10):
