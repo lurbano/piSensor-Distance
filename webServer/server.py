@@ -114,7 +114,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 				#Initialize neopixels
 				if not ledPix:
-					from ledPixels import *
+					import ledPixels 
 					ledPin = board.D18
 					ledPix = ledPixels(nPix, ledPin)
 
