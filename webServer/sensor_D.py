@@ -102,8 +102,16 @@ class sensor_D:
                 self.aRead( True, False, 'live')
             )
 
-    async def chicken(self):
-        print("chicken")
+    async def aLedStrip(self, ledPix, dt, ledMaxRange, ledMinRange):
+        self.taskType = "led"
+        print(f"Working LEDs: {ledPix.nPix}")
+        while 1:
+            await self.sleep(dt)
+            dist = self.measure()
+            n = int(dist - ledMinRange) / (ledMaxRange-ledMinRange)
+            ledPix.twoColors(n)
+
+
 
     def multipulse(self, nPulses=10):
         data = []

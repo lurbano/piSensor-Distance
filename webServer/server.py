@@ -29,6 +29,13 @@ sensor = None
 # DISTANCE SENSOR (END)
 
 
+# LED STRIP (1/3)
+
+ledPix = None
+
+# LED STRIP (END)
+
+
 #Tornado Folder Paths
 settings = dict(
 	template_path = os.path.join(os.path.dirname(__file__), "templates"),
@@ -90,6 +97,38 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			# DISTANCE SENSOR (END)
 
+
+			# LED STRIP (2/3) WITH SENSOR
+
+			global ledPix
+			if msg["what"] == 'ledStart':
+				#Initialize sensor
+				if not sensor:
+					sensor = sensor_U(self)
+				else:
+					sensor.cancelTask()
+				nPix = int(msg['nPix'])
+				ledMaxRange = float(msg['ledMaxRange'])
+				ledMinRange = float(msg['ledMinRange'])
+				dt = float(msg['ledDT'])
+
+				#Initialize neopixels
+				if not ledPix:
+					from ledPixels import *
+					ledPin = board.D18
+					ledPix = ledPixels(nPix, ledPin)
+
+				sensor.task = asyncio.create_task(sensor.aLedStrip(ledPix, dt, ledMaxRange, ledMinRange))
+
+			if msg["what"] == "nPix":
+				print("Resetting nPix")
+				global ledPix
+				ledPix.cancelTask()
+				n = int(msg["n"])
+				ledPix = ledPixels(n, ledPin)
+				ledPix.initCodeColor()
+
+			# END LED STRIP
 
 			if msg["what"] == "hello":
 				r = 'Say what?'

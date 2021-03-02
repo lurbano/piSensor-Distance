@@ -103,6 +103,20 @@ $(document).ready(function(){
           ws.send(JSON.stringify(msg));
         })
 
+        $("#ledStart").click(function(){
+          let nPix = $("#nPixels").val();
+          let ledDt = $("#ledDt").val();
+          let ledMaxRange = $("#ledMaxRange").val();
+          let ledMinRange = $("#ledMinRange").val();
+          let msg = {
+            "what": "ledStart",
+            "ledMaxRange": ledMaxRange,
+            "ledMinRange": ledMinRange,
+            "ledDt": ledDt
+          }
+          ws.send(JSON.stringify(msg));
+        })
+
         // $("#logT").click(function(){
         //     dataT = new dataTable("logData", "°C");
         //     dataT.setupTable();
