@@ -96,11 +96,9 @@ class sensor_D:
         self.taskType = "monitor"
         print("monitor: dt=", dt)
         while 1:
-            print("hey")
             await asyncio.gather(
                 asyncio.sleep(dt),
-                self.chicken()
-                #self.aRead( True, False, 'live')
+                self.aRead( True, False, 'live')
             )
 
     async def chicken(self):
