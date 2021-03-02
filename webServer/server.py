@@ -102,6 +102,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			global ledPix
 			if msg["what"] == 'ledStart':
+				print(msg)
 				#Initialize sensor
 				if not sensor:
 					sensor = sensor_U(self)
