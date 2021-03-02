@@ -3,6 +3,7 @@
 import RPi.GPIO as GPIO
 import time
 import json
+import asyncio
 
 class sensor_D:
 
