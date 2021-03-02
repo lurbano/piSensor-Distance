@@ -86,11 +86,16 @@ $(document).ready(function(){
 
         $("#monitorSensor").click(function(){
           let dt = $("#monitorSec").val();
-          let msg = {
-            "what": "monitor",
-            "dt": dt
-          };
-          ws.send(JSON.stringify(msg));
+          if (dt <= 0.0) {
+            alert("monitor dt needs to be greater than zero");
+          }
+          else {
+            let msg = {
+              "what": "monitor",
+              "dt": dt
+            };
+            ws.send(JSON.stringify(msg));
+          }
         })
 
         $("#monitorStop").click(function(){
