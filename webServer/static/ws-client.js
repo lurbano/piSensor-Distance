@@ -43,6 +43,7 @@ $(document).ready(function(){
 
               // measure once (button press)
               if (sData.info == 'S-one'){
+                console.log(sData);
                 $("#sensor_measure").html(sData.S + ' ' + sData.units);
                 let now = new Date();
                 $("#sensor_time").html(now.toString().split(" GMT")[0]);
