@@ -110,6 +110,7 @@ $(document).ready(function(){
           let ledMinRange = $("#ledMinRange").val();
           let msg = {
             "what": "ledStart",
+            "nPix": nPix,
             "ledMaxRange": ledMaxRange,
             "ledMinRange": ledMinRange,
             "ledDt": ledDt
