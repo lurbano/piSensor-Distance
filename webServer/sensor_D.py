@@ -106,11 +106,11 @@ class sensor_D:
         self.taskType = "led"
         print(f"Working LEDs: {ledPix.nPix}")
         while 1:
-            await self.sleep(dt)
             dist = self.measure()
             n = int(dist - ledMinRange) / (ledMaxRange-ledMinRange)
             ledPix.twoColors(n)
-
+            await self.sleep(dt)
+            
 
 
     def multipulse(self, nPulses=10):
