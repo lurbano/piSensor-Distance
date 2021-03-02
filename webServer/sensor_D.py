@@ -97,6 +97,7 @@ class sensor_D:
             await asyncio.gather(
                 asyncio.sleep(dt),
                 self.aRead( True, False, 'live')
+            )
 
 
     def multipulse(self, nPulses=10):
