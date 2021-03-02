@@ -76,6 +76,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 					sensor.cancelTask()
 				dt = float(msg['dt'])
 				sensor.task = asyncio.create_task(sensor.aMonitor(dt))
+			if msg["what"] == 'monitorStop':
+				if sensor:
+					sensor.cancelTask()
 
 
 			# if msg["what"] == "logT":

@@ -93,6 +93,11 @@ $(document).ready(function(){
           ws.send(JSON.stringify(msg));
         })
 
+        $("#monitorStop").click(function(){
+          let msg = {"what": "monitorStop"};
+          ws.send(JSON.stringify(msg));
+        })
+
         // $("#logT").click(function(){
         //     dataT = new dataTable("logData", "°C");
         //     dataT.setupTable();
