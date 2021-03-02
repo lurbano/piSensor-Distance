@@ -98,7 +98,7 @@ class sensor_D:
         while 1:
             print("hey")
             await asyncio.gather(
-                asyncio.sleep(dt),
+                asyncio.sleep(1),
                 self.aRead( True, False, 'live')
             )
 
