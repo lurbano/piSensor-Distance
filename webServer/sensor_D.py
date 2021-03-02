@@ -98,10 +98,13 @@ class sensor_D:
         while 1:
             print("hey")
             await asyncio.gather(
-                asyncio.sleep(1),
-                self.aRead( True, False, 'live')
+                asyncio.sleep(dt),
+                self.chicken()
+                #self.aRead( True, False, 'live')
             )
 
+    async def chicken(self):
+        print("chicken")
 
     def multipulse(self, nPulses=10):
         data = []
